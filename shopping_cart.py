@@ -1,4 +1,7 @@
 # shopping_cart.py
+import datetime
+now = datetime.datetime.now()
+
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -23,8 +26,16 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-# TODO: write some Python code here to produce the desired functionality...
+
 #shopping_list = []
+print("--------------------------------------")
+print("SARAH'S SUPERMARKET")
+print("--------------------------------------")
+print("Web: "+ "www.sarahsupermarket.com")
+print("Phone: " + "123.456.789")
+print("Checkout Time: " + str(now))
+print("--------------------------------------")
+print("Shopping Cart Items:")
 
 #print(products)
 
@@ -40,7 +51,7 @@ products = [
 
 ######### checkpoint 1 finished
 shopping_list = [2,4,5,12,20]
-print("SHOPPING CART IDENTIFIERS INCLUDE: ", shopping_list)
+#print("SHOPPING CART IDENTIFIERS INCLUDE: ", shopping_list)
 
 
 matching_products = [p["name"] for p in products if p["id"] in shopping_list]
@@ -56,10 +67,17 @@ for x in shopping_list:
     print(" +  " + product + " " + str(price))
     running_total = running_total + price
 
+tax = 0.06*running_total
+total = running_total + tax
 
-print("THE TOTAL PRICE IS: " + str(running_total))
+print("--------------------------------------")
+print("Subtotal:")
+print("Plus DC Sales Tax: " + str(tax) )
+print("Total: " + str(total))
+print("--------------------------------------")
+print("We appreciate your business! Please come again.")
+#print("THE TOTAL PRICE IS: " + str(running_total))
 
 ##################checkpoint 2 kind of finished - definitions of product and price are not working
 
-
-
+##TODO: need to work on defintions of price/product and add tax
