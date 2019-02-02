@@ -38,8 +38,22 @@ while True:
     user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> input is a string
     if user_input == "DONE":
         break  #>ends loop if user inputs DONE
+    #else:
+    #    shopping_list.append(str(user_input))
+    try:
+        number = int(user_input)
+    except ValueError:
+        print("Are you sure that you entered a valid product id? Please try again!")
     else:
+        if number < 0:
+            print("Are you sure that you entered a valid product id? Please try again!")
+        if number > 20:
+            print("Are you sure that you entered a valid product id? Please try again!")
+    if int(user_input) <21 and int(user_input)> 0:
         shopping_list.append(str(user_input))
+         
+    
+
 
 #INFO DISPLAY
 
@@ -52,7 +66,6 @@ print("Checkout Time: " + str(now))
 print("--------------------------------------")
 print("Shopping Cart Items:")
 
-#print(matching_products)
 #print(shopping_list)
 
 running_total = 0
@@ -62,9 +75,11 @@ running_total = 0
 
 for item in shopping_list:
     matching_products = [p for p in products if str(p["id"]) == str(item)]
+    #print(matching_products)
     matching_product = matching_products[0]
     running_total = running_total + matching_product["price"]
     print(" +  " + matching_product["name"] +  " (" + '${:,.2f}'.format(int(matching_product["price"]))+ ")")
+
 
 tax = 0.06*running_total
 total = running_total + tax
