@@ -1,6 +1,6 @@
 # shopping_cart.py
 import datetime
-now = datetime.datetime.now()
+now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 products = [
@@ -35,13 +35,10 @@ shopping_list = []
 while True:
     # capturing user input and storing in a variable
     user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-    # demonstrating ability to recognize what the input was, although you might also want to check its datatype
     if user_input == "DONE":
         break  #ends loop if user inputs DONE
     shopping_list.append(int(user_input))
-
-#print(shopping_list)
-
+   
 ######### checkpoint 1 finished
 
 print("--------------------------------------")
@@ -61,7 +58,8 @@ matching_prices = [p["price"] for p in products if p["id"] in shopping_list]
 running_total = 0
 
 for (x, y) in zip(matching_products, matching_prices):
-    print(" +  " + x, y)
+    
+    print(" +  " + x,  "(" + '${:,.2f}'.format(y)+ ")")
     product = x
     price = y
     running_total = running_total + price
@@ -70,9 +68,9 @@ tax = 0.06*running_total
 total = running_total + tax
 
 print("--------------------------------------")
-print("Subtotal:" + str(running_total))
-print("Plus DC Sales Tax (6%): " + str(tax) )
-print("Total: " + str(total))
+print("Subtotal:" + str('${:,.2f}'.format(running_total)))
+print("Plus DC Sales Tax (6%): " + str('${:,.2f}'.format(tax)))
+print("Total: " + str('${:,.2f}'.format(total)))
 print("--------------------------------------")
 print("We appreciate your business! Please come again.")
 
