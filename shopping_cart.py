@@ -37,7 +37,7 @@ while True:
     try:
         user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> input is a string
         number = int(user_input)
-        if number < 0 or number > 20:
+        if number < 1 or number > 20:
             print("Are you sure that you entered a valid product id? Please try again!")
         if number <21 and number > 0:
             shopping_list.append(str(user_input)) 
