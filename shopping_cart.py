@@ -34,24 +34,21 @@ shopping_list = []
 #INFO CAPTURE
 
 while True:
-    # capturing user input and storing in a variable
-    user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> input is a string
-    if user_input == "DONE":
-        break  #>ends loop if user inputs DONE
-    #else:
-    #    shopping_list.append(str(user_input))
+    
     try:
+        user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> input is a string
         number = int(user_input)
+        
     except ValueError:
+        if user_input == "DONE":
+            break  #>ends loop if user inputs DONE
+        else:
+            pass
+    if number < 0 or number > 20:
         print("Are you sure that you entered a valid product id? Please try again!")
-    else:
-        if number < 0:
-            print("Are you sure that you entered a valid product id? Please try again!")
-        if number > 20:
-            print("Are you sure that you entered a valid product id? Please try again!")
-    if int(user_input) <21 and int(user_input)> 0:
-        shopping_list.append(str(user_input))
-         
+    if number <21 and number > 0:
+            shopping_list.append(str(user_input))
+   
     
 
 
