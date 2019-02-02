@@ -31,15 +31,17 @@ shopping_list = []
 
 
 #print(products)
+#INFO CAPTURE
 
 while True:
     # capturing user input and storing in a variable
-    user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+    user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #> input is a string
     if user_input == "DONE":
-        break  #ends loop if user inputs DONE
-    shopping_list.append(int(user_input))
-   
-######### checkpoint 1 finished
+        break  #>ends loop if user inputs DONE
+    else:
+        shopping_list.append(str(user_input))
+
+#INFO DISPLAY
 
 print("--------------------------------------")
 print("SARAH'S SUPERMARKET")
@@ -50,19 +52,19 @@ print("Checkout Time: " + str(now))
 print("--------------------------------------")
 print("Shopping Cart Items:")
 
-
-matching_products = [p["name"] for p in products if p["id"] in shopping_list]
-matching_prices = [p["price"] for p in products if p["id"] in shopping_list]
 #print(matching_products)
+#print(shopping_list)
 
 running_total = 0
 
-for (x, y) in zip(matching_products, matching_prices):
-    
-    print(" +  " + x,  "(" + '${:,.2f}'.format(y)+ ")")
-    product = x
-    price = y
-    running_total = running_total + price
+
+#PRINT ITEMS IN RECEIPT
+
+for item in shopping_list:
+    matching_products = [p for p in products if str(p["id"]) == str(item)]
+    matching_product = matching_products[0]
+    running_total = running_total + matching_product["price"]
+    print(" +  " + matching_product["name"] +  " (" + '${:,.2f}'.format(int(matching_product["price"]))+ ")")
 
 tax = 0.06*running_total
 total = running_total + tax
@@ -75,4 +77,3 @@ print("--------------------------------------")
 print("We appreciate your business! Please come again.")
 
 
-#TODO: fix rounding and format prices
