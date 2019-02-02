@@ -27,7 +27,23 @@ products = [
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 
-#shopping_list = []
+shopping_list = []
+
+
+#print(products)
+
+while True:
+    # capturing user input and storing in a variable
+    user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+    # demonstrating ability to recognize what the input was, although you might also want to check its datatype
+    if user_input == "DONE":
+        break  #ends loop if user inputs DONE
+    shopping_list.append(int(user_input))
+
+#print(shopping_list)
+
+######### checkpoint 1 finished
+
 print("--------------------------------------")
 print("SARAH'S SUPERMARKET")
 print("--------------------------------------")
@@ -37,22 +53,6 @@ print("Checkout Time: " + str(now))
 print("--------------------------------------")
 print("Shopping Cart Items:")
 
-#print(products)
-
-# an infinite loop! you can press control+c to cancel the program if/when it gets stuck...
-#while True:
-    # capturing user input and storing in a variable
- #   user_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-    # demonstrating ability to recognize what the input was, although you might also want to check its datatype
-  #  if user_input == "DONE":
-   #     break  #ends loop if user inputs DONE
-    #shopping_list.append(user_input)
-
-
-######### checkpoint 1 finished
-shopping_list = [2,4,5,12,20]
-#print("SHOPPING CART IDENTIFIERS INCLUDE: ", shopping_list)
-
 
 matching_products = [p["name"] for p in products if p["id"] in shopping_list]
 matching_prices = [p["price"] for p in products if p["id"] in shopping_list]
@@ -60,24 +60,21 @@ matching_prices = [p["price"] for p in products if p["id"] in shopping_list]
 
 running_total = 0
 
-product = matching_products[0]
-price = matching_prices[0]
-
-for x in shopping_list:
-    print(" +  " + product + " " + str(price))
+for (x, y) in zip(matching_products, matching_prices):
+    print(" +  " + x, y)
+    product = x
+    price = y
     running_total = running_total + price
 
 tax = 0.06*running_total
 total = running_total + tax
 
 print("--------------------------------------")
-print("Subtotal:")
-print("Plus DC Sales Tax: " + str(tax) )
+print("Subtotal:" + str(running_total))
+print("Plus DC Sales Tax (6%): " + str(tax) )
 print("Total: " + str(total))
 print("--------------------------------------")
 print("We appreciate your business! Please come again.")
-#print("THE TOTAL PRICE IS: " + str(running_total))
 
-##################checkpoint 2 kind of finished - definitions of product and price are not working
 
-##TODO: need to work on defintions of price/product and add tax
+#TODO: fix rounding and format prices
